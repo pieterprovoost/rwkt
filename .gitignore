@@ -1,0 +1,8 @@
+buildignore
+.Rproj.user
+rwkt.Rproj
+**/.DS_Store
+.Rbuildignore
+**/.Rhistory
+info
+..Rcheck

@@ -1,0 +1,11 @@
+Package: rwkt
+Type: Package
+Title: R package for converting WKT to GeoJSON
+Version: 1.0
+Date: 2015-03-09
+Author: Pieter Provoost
+Maintainer: Pieter Provoost <pieterprovoost@gmail.com>
+Description: Convert WKT to GeoJSON
+License: MIT
+Depends: stringr, rjson
+Suggests: testthat
