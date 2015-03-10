@@ -63,10 +63,11 @@ objectify <- function(object, data) {
     for (c in seq(1, length(object$children))) {
       
       if (class(data) == "data.frame") {
-        cdata <- data[c,]
+        cdata <- as.list(data[c,])
       } else if (class(data) == "list") {
         cdata <- data
       }
+
       output [["features"]][[c]] <- objectify(object$children[[c]], cdata)
     }
     
@@ -118,10 +119,6 @@ geojson <- function(input, pretty=FALSE, data=list()) {
   p <- parsewkt(input)
   o <- objectify(p, data)
   
-  if (pretty) {
-    return(prettify(toJSON(o, auto_unbox=TRUE)))
-  } else {
-    return(toJSON(o, auto_unbox=TRUE))
-  }
+  return(toJSON(o, auto_unbox=TRUE, pretty=pretty))
   
 }
