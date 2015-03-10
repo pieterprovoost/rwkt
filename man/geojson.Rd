@@ -4,10 +4,14 @@
 \alias{geojson}
 \title{Convert WKT to GeoJSON}
 \usage{
-geojson(input)
+geojson(input, pretty = FALSE, data = list())
 }
 \arguments{
 \item{input}{WKT string}
+
+\item{pretty}{prettify JSON}
+
+\item{data}{properties to be added, either a list or a data frame with one row per geometry in a geometry collection}
 }
 \value{
 GeoJSON string

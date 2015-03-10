@@ -111,6 +111,7 @@ objectify <- function(object, data) {
 #' 
 #' @param input WKT string
 #' @param pretty prettify JSON
+#' @param data properties to be added, either a list or a data frame with one row per geometry in a geometry collection
 #' @return GeoJSON string
 geojson <- function(input, pretty=FALSE, data=list()) {
   
