@@ -7,5 +7,5 @@ Author: Pieter Provoost
 Maintainer: Pieter Provoost <pieterprovoost@gmail.com>
 Description: Convert WKT to GeoJSON
 License: MIT
-Depends: stringr, rjson
+Depends: stringr, jsonlite
 Suggests: testthat

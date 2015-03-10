@@ -114,9 +114,14 @@ objectify <- function(object) {
 #' Convert WKT to GeoJSON
 #' 
 #' @param input WKT string
+#' @param pretty prettify JSON
 #' @return GeoJSON string
-geojson <- function(input) {
+geojson <- function(input, pretty=FALSE) {
   p <- parsewkt(input)
   o <- objectify(p)
-  return(toJSON(o))
+  if (pretty) {
+    return(prettify(toJSON(o, auto_unbox=TRUE)))
+  } else {
+    return(toJSON(o, auto_unbox=TRUE))
+  }
 }
