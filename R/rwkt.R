@@ -54,19 +54,21 @@ parsepoints <- function(points) {
   }
 }
 
-objectify <- function(object) {
+objectify <- function(object, data) {
   output <- list()
-  
-  # geometrycollection
   
   if (object$name == "GEOMETRYCOLLECTION") {
     
     output[["type"]] <- "FeatureCollection"
     for (c in seq(1, length(object$children))) {
-      output [["features"]][[c]] <- objectify(object$children[[c]])
+      
+      if (class(data) == "data.frame") {
+        cdata <- data[c,]
+      } else if (class(data) == "list") {
+        cdata <- data
+      }
+      output [["features"]][[c]] <- objectify(object$children[[c]], cdata)
     }
-    
-    # point
     
   } else if (object$name == "POINT") {
     
@@ -74,9 +76,7 @@ objectify <- function(object) {
     output[["geometry"]] <- list()
     output[["geometry"]][["type"]] <- "Point"
     output[["geometry"]][["coordinates"]] <- object$points[[1]]
-    output[["properties"]] <- list()
-    
-    # linestring
+    output[["properties"]] <- data
     
   } else if (object$name == "LINESTRING") {
     
@@ -84,9 +84,7 @@ objectify <- function(object) {
     output[["geometry"]] <- list()
     output[["geometry"]][["type"]] <- "LineString"
     output[["geometry"]][["coordinates"]] <- object$points
-    output[["properties"]] <- list()
-    
-    # polygon
+    output[["properties"]] <- data
     
   } else if (object$name == "POLYGON") {
     
@@ -94,9 +92,7 @@ objectify <- function(object) {
     output[["geometry"]] <- list()
     output[["geometry"]][["type"]] <- "Polygon"
     output[["geometry"]][["coordinates"]] <- object$points
-    output[["properties"]] <- list()
-    
-    # multipolygon
+    output[["properties"]] <- data
     
   } else if (object$name == "MULTIPOLYGON") {
     
@@ -104,7 +100,7 @@ objectify <- function(object) {
     output[["geometry"]] <- list()
     output[["geometry"]][["type"]] <- "MultiPolygon"
     output[["geometry"]][["coordinates"]] <- object$points
-    output[["properties"]] <- list()
+    output[["properties"]] <- data
     
   }
   
@@ -116,12 +112,15 @@ objectify <- function(object) {
 #' @param input WKT string
 #' @param pretty prettify JSON
 #' @return GeoJSON string
-geojson <- function(input, pretty=FALSE) {
+geojson <- function(input, pretty=FALSE, data=list()) {
+  
   p <- parsewkt(input)
-  o <- objectify(p)
+  o <- objectify(p, data)
+  
   if (pretty) {
     return(prettify(toJSON(o, auto_unbox=TRUE)))
   } else {
     return(toJSON(o, auto_unbox=TRUE))
   }
+  
 }
