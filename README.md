@@ -30,7 +30,6 @@ cat(geojson(data, pretty=TRUE))
                 ]
             },
             "properties": [
-
             ]
         },
         {
