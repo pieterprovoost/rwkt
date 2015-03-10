@@ -29,12 +29,10 @@ cat(geojson(data, pretty=TRUE, data=data.frame(a=c(1,2), b=c(3,4))))
                     6
                 ]
             },
-            "properties": [
-                {
-                    "a": 1,
-                    "b": 3
-                }
-            ]
+            "properties": {
+                "a": 1,
+                "b": 3
+            }
         },
         {
             "type": "Feature",
@@ -51,12 +49,10 @@ cat(geojson(data, pretty=TRUE, data=data.frame(a=c(1,2), b=c(3,4))))
                     ]
                 ]
             },
-            "properties": [
-                {
-                    "a": 2,
-                    "b": 4
-                }
-            ]
+            "properties": {
+                "a": 2,
+                "b": 4
+            }
         }
     ]
 }
