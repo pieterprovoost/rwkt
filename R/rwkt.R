@@ -6,7 +6,7 @@ parsewkt <- function(str) {
   content <- groups[,3]
   result[["name"]] <- geometry
   if (str_count(content, "[A-Za-z]") > 0) {
-    contentgroups <- str_match_all(content, "[A-Za-z\\s]+\\s*\\(.*?\\),*")[[1]][,1]
+    contentgroups <- stri_match_all_regex(content, "[A-Za-z\\s]+\\s*\\(.*?\\)+")[[1]][,1]
     for (c in contentgroups) {
       children[[length(children) + 1]] <- parsewkt(c)
     }
