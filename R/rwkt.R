@@ -111,6 +111,14 @@ objectify <- function(object, data) {
     output[["geometry"]][["coordinates"]] <- lapply(object$points, unlist)
     output[["properties"]] <- data
     
+  } else if (object$name == "MULTILINESTRING") {
+    
+    output[["type"]] <- "Feature"
+    output[["geometry"]] <- list()
+    output[["geometry"]][["type"]] <- "MultiLineString"
+    output[["geometry"]][["coordinates"]] <- object$points
+    output[["properties"]] <- data
+    
   }
   
   return(output)
