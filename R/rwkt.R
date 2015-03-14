@@ -103,6 +103,14 @@ objectify <- function(object, data) {
     output[["geometry"]][["coordinates"]] <- object$points
     output[["properties"]] <- data
     
+  } else if (object$name == "MULTIPOINT") {
+    
+    output[["type"]] <- "Feature"
+    output[["geometry"]] <- list()
+    output[["geometry"]][["type"]] <- "MultiPoint"
+    output[["geometry"]][["coordinates"]] <- lapply(object$points, unlist)
+    output[["properties"]] <- data
+    
   }
   
   return(output)
@@ -114,7 +122,7 @@ objectify <- function(object, data) {
 #' @param pretty prettify JSON
 #' @param data properties to be added, either a list or a data frame with one row per geometry in a geometry collection
 #' @return GeoJSON string
-geojson <- function(input, pretty=FALSE, data=list()) {
+toGeoJSON <- function(input, pretty=FALSE, data=list()) {
   
   p <- parsewkt(input)
   o <- objectify(p, data)
