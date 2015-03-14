@@ -13,7 +13,7 @@ install_github("pieterprovoost/rwkt")
 
 ```R
 data <- "GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))"
-cat(geojson(data, pretty=TRUE, data=data.frame(a=c(1,2), b=c(3,4))))
+cat(toGeoJSON(data, pretty=TRUE, data=data.frame(a=c(1,2), b=c(3,4))))
 ```
 
 ```json
