@@ -1,6 +1,6 @@
 # rwkt
 
-This is an R package for converting WKT geometries to GeoJSON. It currently supports GeometryCollection, Point, LineString, Polygon, MultiPolygon, MultiPoint and MultiLineString.
+This is an R package for converting WKT geometries to GeoJSON. It currently supports GeometryCollection, Point, LineString, Polygon, MultiPolygon, MultiPoint and MultiLineString. A list or dataframe can be passed along to add properties to a feature or to features in a collection.
 
 ## Install
 
